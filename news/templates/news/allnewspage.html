@@ -1,0 +1,37 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>HyperNews</title>
+</head>
+<body>
+<h2>Hyper news</h2>
+
+<form id="form_search" action="/news/" method="get">
+    {% csrf_token %}
+    <label>Search:<input type="text" name="q"></label>
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+<hr>
+
+{% regroup news_list_without_time by created as created_list %}
+
+{% for created in created_list %}
+<h4>{{ created.grouper }}</h4>
+<ul>
+    {% for new in created.list %}
+    <li><a target="_blank" href="/news/{{ new.link }}/">{{ new.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endfor %}
+
+<hr>
+<a align="center" target="_blank" href="/news/create/"><h3>Add your news</h3></a>
+</body>
+</html>

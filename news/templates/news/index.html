@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HyperNews Portal</title>
+</head>
+
+<body>
+    <h2>{{ single_news.title }}</h2>
+    <p>{{ single_news.created }}</p><br>
+    <p>{{ single_news.text }}</p>
+    <br>
+    <hr>
+    <a href="/news/">Return to All news</a>
+</body>
+</html>
